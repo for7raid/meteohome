@@ -1,0 +1,82 @@
+/*
+Test the tft.print() viz the libraries embedded write() function
+
+This sketch used font 2, 4, 7
+
+Make sure all the required fonts are loaded by editting the
+User_Setup.h file in the TFT_eSPI library folder.
+
+#########################################################################
+###### DON'T FORGET TO UPDATE THE User_Setup.h FILE IN THE LIBRARY ######
+#########################################################################
+*/
+
+#include <SPI.h>
+
+#include <TFT_eSPI.h> // Hardware-specific library
+
+TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
+
+#define TFT_GREY 0x5AEB // New colour
+
+#define CENTRE 240
+
+#define FM9 &FreeMono9pt7b
+
+void setup(void) {
+	tft.init();
+	
+	tft.setRotation(2);
+
+	tft.fillScreen(TFT_GREY);
+
+	/*tft.fillRect(0, 0, 480, 13, TFT_RED);
+
+	tft.fillRect(0, 305, 480, 320, TFT_GREY);
+	tft.setTextColor(TFT_BLACK, TFT_RED);
+
+	tft.drawCentreString("* TFT_eSPI *", CENTRE, 3, 1);*/
+
+	//tft.setFreeFont(FM9);
+	
+
+	tft.setTextColor(TFT_WHITE, TFT_GREY);
+	
+	tft.setTextSize(16);
+	tft.drawString("-38", 10, 10);
+
+	tft.setTextSize(4);
+	tft.drawString("5", 135, 30);
+
+	tft.setTextSize(2);
+	tft.drawString("C", 135, 10);
+
+	tft.setTextSize(16);
+	tft.drawString("34", 180, 10);
+
+	tft.setTextSize(4);
+	tft.drawString("%", 260, 30);
+
+	tft.fillRect(313, 0, 7, 160, TFT_RED);
+	tft.fillRect(313, 160, 7, 160, TFT_YELLOW);
+	tft.fillRect(313, 320, 7, 160, TFT_GREEN);
+
+	/*tft.fillRect(305, 0, 5, 160, TFT_RED);
+	tft.fillRect(305, 160, 5, 160, TFT_YELLOW);
+	tft.fillRect(305, 320, 5, 160, TFT_GREEN);*/
+
+	tft.fillRect(306, 190, 7, 480-190, TFT_YELLOW);
+	
+	//tft.drawCentreString("Adapted by Bodmer", CENTRE, 309, 1);
+
+	//tft.drawRect(0, 14, 479, 305 - 14, TFT_BLUE);
+}
+
+void loop() {
+
+	
+	delay(10000);
+}
+
+
+
