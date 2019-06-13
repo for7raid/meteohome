@@ -33,10 +33,19 @@ User_Setup.h file in the TFT_eSPI library folder.
 #define FS_NO_GLOBALS
 #include "FS.h"
 
+#include <Wire.h>
+//#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+#include "SparkFun_Si7021_Breakout_Library.h" 
+
+
 #define updateInternetWeatherInterval SECS_PER_MIN * 15 * 1000 * 1000
 
 #define CO2_PIN D2
 #define EA2_PIN D1
+
+Adafruit_BME280 bme; // I2C
+Weather SI7021;
 
 char ssid[] = "Raids";  //  your network SSID (name)
 char pass[] = "sr65v1986";       // your network password
@@ -72,7 +81,7 @@ void ext_int_1(void) {
 
 void setup(void) {
 	Serial.begin(115200);
-
+	
 
 
 	SPIFFS.begin();
@@ -114,6 +123,13 @@ void setup(void) {
 	tft.fillScreen(BACKGROUND);
 
 	setupWifi();
+
+	Wire.begin(D4, D3);
+	if (!bme.begin()) {
+		tft.drawString("Could not find a valid BME280 sensor, check wiring!", 5, 90);
+		Serial.println("Could not find a valid BME280 sensor, check wiring!");
+		return;
+	}
 
 	tft.fillScreen(BACKGROUND);
 	

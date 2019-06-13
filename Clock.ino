@@ -62,7 +62,7 @@ void getTimeCallback() {
 void DisplaySeconds() {
 
 	int s = second();
-	if (s == 0) 
+	if (s == 0)
 		DisplayHours();
 	tft.setTextDatum(MC_DATUM);
 	tft.loadFont("Fonts/Arial24");
@@ -79,16 +79,15 @@ void DisplayHours() {
 	tft.drawString(h, 80, 432);
 	tft.unloadFont();
 
-	DisplaySun();
 }
 
 void DisplayTime() {
 	DisplaySeconds();
 
-	//if (hour() == 0 && minute() == 0) {
-		/*DisplayDate();
-		DisplaySun();*/
-		//}
+	if (minute() == 0) {
+		DisplayDate();
+		DisplaySun();
+	}
 
 }
 

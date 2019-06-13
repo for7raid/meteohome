@@ -1,23 +1,17 @@
 ﻿
-#include <Wire.h>
-//#include <Adafruit_Sensor.h>
-#include <Adafruit_BME280.h>
-Adafruit_BME280 bme; // I2C
+
 
 
 void StartRoom() {
 	attachInterrupt(CO2_PIN, ProcessCO2Interupt, CHANGE);
-	Wire.begin(D4, D3);
-	if (!bme.begin()) {
-		Serial.println("Could not find a valid BME280 sensor, check wiring!");
-	}
+	
 }
 
 void UpdateMainRoomData() {
 
 
-	_weatherData.M_T = bme.readTemperature() *.97;
-	_weatherData.M_RH = bme.readHumidity();
+	_weatherData.M_T = SI7021.getTemp();// bme.readTemperature() * .97;
+	_weatherData.M_RH = SI7021.getRH(); // bme.readHumidity();
 	_weatherData.M_P = bme.readPressure() / 100.0F * 0.75006375541921;
 
 	//Зал
