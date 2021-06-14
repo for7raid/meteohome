@@ -327,7 +327,7 @@ void setupWifi() {
 void loop() {
 
 	if (updateTime.Now()) DisplayTime();
-	if (updateInternetWeather.Now()) UpdateInternetWeather();
+	//if (updateInternetWeather.Now()) UpdateInternetWeather();
 	if (updateMainRoom.Now()) UpdateMainRoomData();
 	//if (sendToServer.Now()) SendToServer();
 	//if (updateEa2.Now()) Processbl999();
